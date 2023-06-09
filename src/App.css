@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgb(57, 13, 98);
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.question{
+    font-weight: 700;
+    color: lightslategray;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: aliceblue;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+    margin: auto;
+    color: aliceblue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+p {
+    margin: 20px auto;
+    text-align: center;
+    color: aliceblue;
 }
 
-.App-link {
-  color: #61dafb;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li {
+    margin-bottom: 10px;
+    color: aliceblue;
+}
+
+label {
+    display: flex;
+    align-items: space-between;
+    border: 3px solid gray;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 30px;
+}
+
+input[type="radio"] {
+    margin-left: auto;
+    transform: scale(2);
+}
+span {
+    display: inline-block;
+}
+.startBtn,
+.replayBtn,
+.exitBtn{
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: coral;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.submitBtn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 80%;
+}
+
+.submitBtn:active {
+    background-color: teal;
+}
+
+.nextBtn {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 80%;
+}
+
+button:disabled {
+    color: black;
+    background-color: #ccc;
+    cursor: not-allowed;
+    border-radius: 30px;
+    width: 80%;
 }

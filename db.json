@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "What is the capital of France?",
+      "answers": ["London", "Paris", "Berlin", "Rome"],
+      "correctAnswerIndex": 1
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "answers": ["Mars", "Jupiter", "Venus", "Saturn"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "answers": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "What is the largest ocean on Earth?",
+      "answers": ["Atlantic Ocean", "Arctic Ocean", "Indian Ocean", "Pacific Ocean"],
+      "correctAnswerIndex": 3
+    },
+    {
+      "question": "Which country is known for its pyramids?",
+      "answers": ["Egypt", "Greece", "Mexico", "China"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "Who wrote the play 'Romeo and Juliet'?",
+      "answers": ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "answers": ["Go", "Au", "Ag", "Ge"],
+      "correctAnswerIndex": 1
+    },
+    {
+      "question": "Which country is home to the Great Barrier Reef?",
+      "answers": ["Australia", "Brazil", "Canada", "India"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "Who was the first person to step on the moon?",
+      "answers": ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Alan Shepard"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "What is the largest organ in the human body?",
+      "answers": ["Heart", "Liver", "Brain", "Skin"],
+      "correctAnswerIndex": 3
+    }
+  ]
+}
