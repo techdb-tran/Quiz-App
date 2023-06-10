@@ -7,7 +7,8 @@ const COLOR_GREEN = 'green';
 const COLOR_RED = 'red';
 
 const QuizApp = () => {
-  const [questions, setQuestions] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [currentSubject, setCurrentSubject] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [quizStarted, setQuizStarted] = useState(false);
@@ -25,19 +26,20 @@ const QuizApp = () => {
   const [endTime, setEndTime] = useState(null);
 
   useEffect(() => {
-    const fetchQuestions = async () => {
+    const fetchSubjects = async () => {
       try {
         const response = await axios.get('http://localhost:4000/questions');
-        setQuestions(response.data);
+        setSubjects(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchQuestions();
+    fetchSubjects();
   }, []);
 
-  const startQuiz = () => {
+  const startQuiz = (subject) => {
     setQuizStarted(true);
+    setCurrentSubject(subject);
     setCurrentQuestion(0);
     setSelectedAnswer('');
     setQuizStats({
@@ -48,7 +50,7 @@ const QuizApp = () => {
     const newStartTime = new Date().getTime();
     setStartTime(newStartTime);
   };
-
+ 
   useEffect(() => {
     console.log(startTime);
   }, [startTime]);
@@ -63,7 +65,7 @@ const QuizApp = () => {
 
   const submitAnswer = () => {
     const currentAnswer = selectedAnswer;
-    const currentQuestionData = questions[currentQuestion];
+    const currentQuestionData = currentSubject.questions[currentQuestion];
 
     const isAnswerCorrect = isCorrectAnswer(currentQuestionData, currentAnswer);
 
@@ -79,23 +81,26 @@ const QuizApp = () => {
       setIncorrectAnswers((prevIncorrectAnswers) => [
         ...prevIncorrectAnswers,
         {
-          question: currentQuestionData.question,
+          question: currentQuestionData.questionText,
           selectedAnswer: currentAnswer,
-          correctAnswer: currentQuestionData.answers[currentQuestionData.correctAnswerIndex],
+          correctAnswer: getCorrectAnswerText(currentQuestionData.answers),
         },
       ]);
     }
   };
 
   const isCorrectAnswer = (question, answer) => {
-    return question.answers[question.correctAnswerIndex] === answer;
+    return question.answers.find((a) => a.isCorrect)?.answerText === answer;
   };
-
+  const getCorrectAnswerText = (answers) => {
+    const correctAnswer = answers.find((a) => a.isCorrect);
+    return correctAnswer ? correctAnswer.answerText : '';
+  };
   const nextAnswer = () => {
     setQuizNext(false);
     setColor('');
 
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < currentSubject.questions.length - 1) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setSelectedAnswer('');
     } else {
@@ -114,7 +119,7 @@ const QuizApp = () => {
   const endQuiz = () => {
     const newEndTime = new Date().getTime();
     setEndTime(newEndTime);
-    const totalQuestions = questions.length;
+    const totalQuestions = currentSubject.questions.length;
     const totalTime = calculateTotalTime();
 
     const passed = quizStats.correctAnswers >= totalQuestions * QUIZ_THRESHOLD;
@@ -144,6 +149,8 @@ const QuizApp = () => {
   const replayQuiz = () => {
     setQuizStarted(false);
     setQuizCompleted(false);
+    setIncorrectAnswers([]);
+    setReviewMode(false)
   };
 
   const exitApp = () => {
@@ -160,13 +167,19 @@ const QuizApp = () => {
     setStartTime(null);
     setEndTime(null);
     setColor('');
+    setIncorrectAnswers([]);
+    setReviewMode(false)
   };
 
   if (!quizStarted) {
     return (
       <div>
         <h1>Quiz App!</h1>
-        <button onClick={startQuiz} className='startBtn'>Start Quiz!</button>
+        {subjects.map((subject) => (
+          <button key={subject.subjectId} onClick={() => startQuiz(subject)} className='startBtn'>
+            Start {subject.subjectName} Quiz!
+          </button>
+        ))}
       </div>
     );
   }
@@ -177,7 +190,7 @@ const QuizApp = () => {
         <div className='container'>
           <h1>{quizStats.passed ? 'Congratulations!!' : 'Completed!'}</h1>
           <p>{quizStats.passed ? 'You are amazing!!' : 'Better luck next time!'}</p>
-          <p>{quizStats.correctAnswers}/10 correct answers in {quizStats.totalTime} seconds</p>
+          <p>{quizStats.correctAnswers}/{currentSubject.questions.length} correct answers in {quizStats.totalTime} seconds</p>
           {!reviewMode && (
             <button onClick={reviewAnswers} className='reviewBtn'>Review</button>
           )}
@@ -191,7 +204,7 @@ const QuizApp = () => {
         <div className='container'>
           <h1>{quizStats.passed ? 'Congratulations!!' : 'Completed!'}</h1>
           <p>{quizStats.passed ? 'You are amazing!!' : 'Better luck next time!'}</p>
-          <p>{quizStats.correctAnswers}/10 correct answers in {quizStats.totalTime} seconds</p>
+          <p>{quizStats.correctAnswers}/{currentSubject.questions.length} correct answers in {quizStats.totalTime} seconds</p>
           {reviewMode && (
             <button onClick={exitReviewMode} className='exitReviewBtn'>Exit Review</button>
           )}
@@ -216,25 +229,24 @@ const QuizApp = () => {
     }
   }
 
-  const currentQuestionData = questions[currentQuestion];
-
+  const currentQuestionData = currentSubject.questions[currentQuestion];
   return (
     <div className='container'>
       <h1>Quiz App</h1>
-      <h2>Question {currentQuestion + 1}/10</h2>
-      <p className='question'>{currentQuestionData.question}</p>
+      <h2>Question {currentQuestion + 1}/{currentSubject.questions.length}</h2>
+      <p className='question'>{currentQuestionData.questionText}</p>
       <ul>
         {currentQuestionData.answers.map((answer) => (
-          <li key={answer}>
-            <label style={{ borderColor: selectedAnswer === answer && color !== '' ? color : '' }}>
-              <span style={{ color: selectedAnswer === answer && color !== '' ? color : '' }}>
-                {answer}
+          <li key={answer.answerId}>
+            <label style={{ borderColor: selectedAnswer === answer.answerText && color !== '' ? color : '' }}>
+              <span style={{ color: selectedAnswer === answer.answerText && color !== '' ? color : '' }}>
+                {answer.answerText}
               </span>
               <input
                 type="radio"
-                value={answer}
-                checked={selectedAnswer === answer}
-                onChange={() => handleAnswerSelection(answer)}
+                value={answer.answerText}
+                checked={selectedAnswer === answer.answerText}
+                onChange={() => handleAnswerSelection(answer.answerText)}
               />
             </label>
           </li>

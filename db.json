@@ -1,74 +1,269 @@
 {
-  "questions": [
+  "subjects": [
     {
-      "question": "What is the capital of France?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 4,
-      "answers": ["London", "Paris", "Berlin", "Rome"],
-      "correctAnswerIndex": 1
-    },
-    {
-      "question": "Which planet is known as the Red Planet?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 4,
-      "answers": ["Mars", "Jupiter", "Venus", "Saturn"],
-      "correctAnswerIndex": 0
-    },
-    {
-      "question": "Who painted the Mona Lisa?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 5,
-      "answers": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
-      "correctAnswerIndex": 0
-    },
-    {
-      "question": "What is the largest ocean on Earth?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 4,
-      "answers": ["Atlantic Ocean", "Arctic Ocean", "Indian Ocean", "Pacific Ocean"],
-      "correctAnswerIndex": 3
-    },
-    {
-      "question": "Which country is known for its pyramids?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 4,
-      "answers": ["Egypt", "Greece", "Mexico", "China"],
-      "correctAnswerIndex": 0
-    },
-    {
-      "question": "Who wrote the play 'Romeo and Juliet'?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 7,
-      "answers": ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
-      "correctAnswerIndex": 0
-    },
-    {
-      "question": "What is the chemical symbol for gold?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 2,
-      "answers": ["Go", "Au", "Ag", "Ge"],
-      "correctAnswerIndex": 1
-    },
-    {
-      "question": "Which country is home to the Great Barrier Reef?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 4,
-      "answers": ["Australia", "Brazil", "Canada", "India"],
-      "correctAnswerIndex": 0
-    },
-    {
-      "question": "Who was the first person to step on the moon?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 6,
-      "answers": ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Alan Shepard"],
-      "correctAnswerIndex": 0
-    },
-    {
-      "question": "What is the largest organ in the human body?",
-      "subject": ["Math","Physic","Chemistry","Biology","Geography","Art","History","Literature"],
-      "subjectIndex": 6,
-      "answers": ["Heart", "Liver", "Brain", "Skin"],
-      "correctAnswerIndex": 3
+      "subjectId": 1,
+      "subjectName": "General Knowledge",
+      "questions": [
+        {
+          "questionId": 1,
+          "questionText": "What is the capital of France?",
+          "answers": [
+            {
+              "answerId": 1,
+              "answerText": "London",
+              "isCorrect": false
+            },
+            {
+              "answerId": 2,
+              "answerText": "Paris",
+              "isCorrect": true
+            },
+            {
+              "answerId": 3,
+              "answerText": "Berlin",
+              "isCorrect": false
+            },
+            {
+              "answerId": 4,
+              "answerText": "Rome",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 2,
+          "questionText": "Who painted the Mona Lisa?",
+          "answers": [
+            {
+              "answerId": 5,
+              "answerText": "Leonardo da Vinci",
+              "isCorrect": true
+            },
+            {
+              "answerId": 6,
+              "answerText": "Vincent van Gogh",
+              "isCorrect": false
+            },
+            {
+              "answerId": 7,
+              "answerText": "Pablo Picasso",
+              "isCorrect": false
+            },
+            {
+              "answerId": 8,
+              "answerText": "Michelangelo",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 3,
+          "questionText": "Which planet is known as the Red Planet?",
+          "answers": [
+            {
+              "answerId": 9,
+              "answerText": "Mars",
+              "isCorrect": true
+            },
+            {
+              "answerId": 10,
+              "answerText": "Jupiter",
+              "isCorrect": false
+            },
+            {
+              "answerId": 11,
+              "answerText": "Venus",
+              "isCorrect": false
+            },
+            {
+              "answerId": 12,
+              "answerText": "Saturn",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 4,
+          "questionText": "What is the largest ocean on Earth?",
+          "answers": [
+            {
+              "answerId": 13,
+              "answerText": "Atlantic Ocean",
+              "isCorrect": false
+            },
+            {
+              "answerId": 14,
+              "answerText": "Arctic Ocean",
+              "isCorrect": false
+            },
+            {
+              "answerId": 15,
+              "answerText": "Indian Ocean",
+              "isCorrect": false
+            },
+            {
+              "answerId": 16,
+              "answerText": "Pacific Ocean",
+              "isCorrect": true
+            }
+          ]
+        },
+        {
+          "questionId": 5,
+          "questionText": "Which country is known for its pyramids?",
+          "answers": [
+            {
+              "answerId": 17,
+              "answerText": "Egypt",
+              "isCorrect": true
+            },
+            {
+              "answerId": 18,
+              "answerText": "Greece",
+              "isCorrect": false
+            },
+            {
+              "answerId": 19,
+              "answerText": "Mexico",
+              "isCorrect": false
+            },
+            {
+              "answerId": 20,
+              "answerText": "China",
+              "isCorrect": false
+            }]
+        },
+        {
+          "questionId": 6,
+          "questionText": "Who wrote the play 'Romeo and Juliet'?",
+          "answers": [
+            {
+              "answerId": 21,
+              "answerText": "William Shakespeare",
+              "isCorrect": true
+            },
+            {
+              "answerId": 22,
+              "answerText": "Charles Dickens",
+              "isCorrect": false
+            },
+            {
+              "answerId": 23,
+              "answerText": "Jane Austen",
+              "isCorrect": false
+            },
+            {
+              "answerId": 24,
+              "answerText": "Mark Twain",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 7,
+          "questionText": "What is the chemical symbol for gold?",
+          "answers": [
+            {
+              "answerId": 25,
+              "answerText": "Go",
+              "isCorrect": false
+            },
+            {
+              "answerId": 26,
+              "answerText": "Au",
+              "isCorrect": true
+            },
+            {
+              "answerId": 27,
+              "answerText": "Ag",
+              "isCorrect": false
+            },
+            {
+              "answerId": 28,
+              "answerText": "Ge",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 8,
+          "questionText": "Which country is home to the Great Barrier Reef?",
+          "answers": [
+            {
+              "answerId": 29,
+              "answerText": "Australia",
+              "isCorrect": true
+            },
+            {
+              "answerId": 30,
+              "answerText": "Brazil",
+              "isCorrect": false
+            },
+            {
+              "answerId": 31,
+              "answerText": "Canada",
+              "isCorrect": false
+            },
+            {
+              "answerId": 32,
+              "answerText": "China",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 9,
+          "questionText": "Who was the first person to step on the moon?",
+          "answers": [
+            {
+              "answerId": 33,
+              "answerText": "Neil Armstrong",
+              "isCorrect": true
+            },
+            {
+              "answerId": 34,
+              "answerText": "Buzz Aldrin",
+              "isCorrect": false
+            },
+            {
+              "answerId": 35,
+              "answerText": "Yuri Gagarin",
+              "isCorrect": false
+            },
+            {
+              "answerId": 36,
+              "answerText": "Alan Shepard",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "questionId": 10,
+          "questionText": "What is the largest organ in the human body?",
+          "answers": [
+            {
+              "answerId": 37,
+              "answerText": "Heart",
+              "isCorrect": false
+            },
+            {
+              "answerId": 38,
+              "answerText": "Liver",
+              "isCorrect": false
+            },
+            {
+              "answerId": 39,
+              "answerText": "Brain",
+              "isCorrect": false
+            },
+            {
+              "answerId": 40,
+              "answerText": "Skin",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
     }
   ]
 }
