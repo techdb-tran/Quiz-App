@@ -28,7 +28,7 @@ const QuizApp = () => {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/questions');
+        const response = await axios.get('http://localhost:4000/subjects');
         setSubjects(response.data);
       } catch (error) {
         console.error(error);
