@@ -14,6 +14,8 @@ const QuizApp = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizNext, setQuizNext] = useState(false);
   const [color, setColor] = useState('');
+  const [reviewMode, setReviewMode] = useState(false);
+  const [incorrectAnswers, setIncorrectAnswers] = useState([]);
   const [quizStats, setQuizStats] = useState({
     correctAnswers: 0,
     totalTime: 0,
@@ -73,6 +75,15 @@ const QuizApp = () => {
         ...prevStats,
         correctAnswers: prevStats.correctAnswers + 1,
       }));
+    } else {
+      setIncorrectAnswers((prevIncorrectAnswers) => [
+        ...prevIncorrectAnswers,
+        {
+          question: currentQuestionData.question,
+          selectedAnswer: currentAnswer,
+          correctAnswer: currentQuestionData.answers[currentQuestionData.correctAnswerIndex],
+        },
+      ]);
     }
   };
 
@@ -124,7 +135,10 @@ const QuizApp = () => {
   };
 
   const reviewAnswers = () => {
-    // Implement the logic to display the correct answers for the questions answered incorrectly
+    setReviewMode(true);
+  };
+  const exitReviewMode = () => {
+    setReviewMode(false);
   };
 
   const replayQuiz = () => {
@@ -133,7 +147,6 @@ const QuizApp = () => {
   };
 
   const exitApp = () => {
-    // Implement the logic to exit the app
     alert("Exiting the Quiz App");
     setQuizStarted(false);
     setQuizCompleted(false);
@@ -146,7 +159,7 @@ const QuizApp = () => {
     });
     setStartTime(null);
     setEndTime(null);
-    setColor('');  
+    setColor('');
   };
 
   if (!quizStarted) {
@@ -159,15 +172,48 @@ const QuizApp = () => {
   }
 
   if (quizCompleted) {
-    return (
-      <div className='container'>
-        <h1>{quizStats.passed ? 'Congratulations!!' : 'Completed!'}</h1>
-        <p>{quizStats.passed ? 'You are amazing!!' : 'Better luck next time!'}</p>
-        <p>{quizStats.correctAnswers}/10 correct answers in {quizStats.totalTime} seconds</p>
-        <button onClick={replayQuiz} className='replayBtn'>Play Again</button>
-        <button onClick={exitApp} className='exitBtn'>Exit App</button>
-      </div>
-    );
+    if (!reviewMode) {
+      return (
+        <div className='container'>
+          <h1>{quizStats.passed ? 'Congratulations!!' : 'Completed!'}</h1>
+          <p>{quizStats.passed ? 'You are amazing!!' : 'Better luck next time!'}</p>
+          <p>{quizStats.correctAnswers}/10 correct answers in {quizStats.totalTime} seconds</p>
+          {!reviewMode && (
+            <button onClick={reviewAnswers} className='reviewBtn'>Review</button>
+          )}
+          <button onClick={replayQuiz} className='replayBtn'>Play Again</button>
+          <button onClick={exitApp} className='exitBtn'>Exit App</button>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className='container'>
+          <h1>{quizStats.passed ? 'Congratulations!!' : 'Completed!'}</h1>
+          <p>{quizStats.passed ? 'You are amazing!!' : 'Better luck next time!'}</p>
+          <p>{quizStats.correctAnswers}/10 correct answers in {quizStats.totalTime} seconds</p>
+          {reviewMode && (
+            <button onClick={exitReviewMode} className='exitReviewBtn'>Exit Review</button>
+          )}
+          <button onClick={replayQuiz} className='replayBtn'>Play Again</button>
+          <button onClick={exitApp} className='exitBtn'>Exit App</button>
+          {incorrectAnswers.length > 0 && (
+            <>
+              <h3 className='inCorrectAnswer'>Incorrect Answers:</h3>
+              <ul>
+                {incorrectAnswers.map((incorrectAnswer, index) => (
+                  <li key={index} className='inCorrectAnswerItem'>
+                    <p>Question: {incorrectAnswer.question}</p>
+                    <p>Your Answer: {incorrectAnswer.selectedAnswer}</p>
+                    <p>Correct Answer: {incorrectAnswer.correctAnswer}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      )
+    }
   }
 
   const currentQuestionData = questions[currentQuestion];
@@ -181,8 +227,8 @@ const QuizApp = () => {
         {currentQuestionData.answers.map((answer) => (
           <li key={answer}>
             <label style={{ borderColor: selectedAnswer === answer && color !== '' ? color : '' }}>
-            <span style={{ color: selectedAnswer === answer && color !== '' ? color : '' }}>
-            {answer}
+              <span style={{ color: selectedAnswer === answer && color !== '' ? color : '' }}>
+                {answer}
               </span>
               <input
                 type="radio"

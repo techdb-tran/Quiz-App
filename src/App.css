@@ -59,6 +59,8 @@ span {
 }
 .startBtn,
 .replayBtn,
+.reviewBtn,
+.exitReviewBtn,
 .exitBtn{
     display: block;
     margin: 10px auto;
@@ -105,4 +107,11 @@ button:disabled {
     cursor: not-allowed;
     border-radius: 30px;
     width: 80%;
+}
+.inCorrectAnswer{
+    color: aliceblue;
+    text-align: center;
+}
+.inCorrectAnswerItem{
+    border-bottom: 1px solid white;
 }
